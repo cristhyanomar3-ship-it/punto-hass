@@ -23,7 +23,7 @@ export function Logo({ variant = "lockup", theme = "on-cream", className = "" }:
       aria-label="Isotipo Punto Hass"
     >
       <circle cx="24" cy="24" r="24" fill={circleFill} />
-      <path d="M24 15L33 31H15L24 15Z" fill={peakFill} />
+      <path d="M13 31Q19 14 24 24Q29 14 35 31Z" fill={peakFill} />
     </svg>
   );
 
