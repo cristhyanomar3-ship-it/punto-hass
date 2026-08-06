@@ -1,69 +1,102 @@
-import Image from "next/image";
+import { Hero } from "@/components/Hero";
+import { MaturityComparator } from "@/components/MaturityComparator";
+import { SectionReveal } from "@/components/SectionReveal";
+import { AnimatedStat } from "@/components/AnimatedStat";
+import { Card } from "@/components/Card";
+import { Button } from "@/components/Button";
+import { WHY_STATS } from "@/lib/constants";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <Hero />
+
+      <section className="mx-auto max-w-content px-6 py-24 md:py-32">
+        <SectionReveal className="mx-auto mb-14 max-w-2xl text-center">
+          <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent">
+            El diferenciador
           </p>
+          <h2 className="font-display text-3xl font-semibold text-primary md:text-4xl">
+            No vendemos palta genérica. Vendemos el punto exacto.
+          </h2>
+          <p className="mt-4 font-sans text-base text-text/70">
+            Elige el punto de maduración según lo que va a pasar en tu cocina — no al revés.
+          </p>
+        </SectionReveal>
+
+        <SectionReveal delay={0.1}>
+          <MaturityComparator />
+        </SectionReveal>
+      </section>
+
+      <section className="bg-primary py-24 text-secondary md:py-32">
+        <div className="mx-auto max-w-content px-6">
+          <SectionReveal className="mx-auto mb-16 max-w-2xl text-center">
+            <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent-fresh">
+              Por qué importa
+            </p>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">
+              El punto exacto no es un detalle — es el ahorro real.
+            </h2>
+          </SectionReveal>
+
+          <div className="grid gap-10 sm:grid-cols-3">
+            {WHY_STATS.map((stat, i) => (
+              <SectionReveal key={stat.label} delay={i * 0.1}>
+                <AnimatedStat
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  description={stat.description}
+                />
+              </SectionReveal>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="mx-auto max-w-content px-6 py-24 md:py-32">
+        <SectionReveal className="mx-auto mb-14 max-w-2xl text-center">
+          <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent">
+            Confianza
+          </p>
+          <h2 className="font-display text-3xl font-semibold text-primary md:text-4xl">
+            Cocinas que ya trabajan con nosotros
+          </h2>
+        </SectionReveal>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <SectionReveal key={i} delay={i * 0.1}>
+              <Card>
+                <p className="font-display text-lg italic text-primary/40">
+                  [TESTIMONIO PENDIENTE]
+                </p>
+                <p className="mt-4 font-sans text-sm font-semibold uppercase tracking-technical text-primary/30">
+                  Nombre — Cargo, negocio
+                </p>
+              </Card>
+            </SectionReveal>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="bg-secondary pb-24 pt-4 md:pb-32">
+        <SectionReveal className="mx-auto max-w-content rounded-3xl bg-primary px-8 py-16 text-center text-secondary md:px-16">
+          <h2 className="font-display text-3xl font-semibold md:text-4xl">
+            Empieza con un pedido de prueba, no con un contrato.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl font-sans text-base text-secondary/75">
+            Evalúa consistencia en 2-3 entregas antes de comprometer volumen. Así decide un
+            comprador serio.
+          </p>
+          <div className="mt-8">
+            <Button href="/contacto" variant="primary">
+              Cotizar ahora
+            </Button>
+          </div>
+        </SectionReveal>
+      </section>
+    </>
   );
 }
