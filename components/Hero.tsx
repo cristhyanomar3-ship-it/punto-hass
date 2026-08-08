@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./Button";
 import { BRAND_PROMISE } from "@/lib/constants";
@@ -12,21 +12,39 @@ import { BRAND_PROMISE } from "@/lib/constants";
  */
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  // Fallback explícito: algunos navegadores móviles (iOS Safari en modo de
+  // bajo consumo, WebViews) ignoran el atributo autoPlay y necesitan que
+  // .play() se llame desde JS una vez el video está listo.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    const tryPlay = () => video.play().catch(() => {});
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    return () => video.removeEventListener("loadeddata", tryPlay);
+  }, []);
+
   return (
     <div ref={ref} className="relative h-[92vh] min-h-[560px] overflow-hidden bg-primary">
       <motion.div style={{ y: bgY }} className="absolute inset-0" aria-hidden>
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="h-[130%] w-full object-cover"
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="h-[130%] w-full object-cover object-center"
           poster="/images/producto-corte.jpg"
         >
           <source src="/video/hero-avocado.mp4" type="video/mp4" />

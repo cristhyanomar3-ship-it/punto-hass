@@ -12,33 +12,25 @@ type LogoProps = {
  * un círculo por el fruto, una cumbre de dos picos por el carozo/origen andino.
  * Un solo color por aplicación, tal como define el manual de marca.
  *
- * "on-cream" usa el archivo oficial (public/logo/isotipo.png). "on-green" usa
- * la versión vectorial invertida — no tenemos un PNG oficial en esa variante.
+ * Ambas variantes usan el archivo oficial: "on-cream" es el PNG original
+ * (verde sobre crema), "on-green" es su inversión exacta de color
+ * (public/logo/isotipo-on-green.png, generada por swap de canal desde el
+ * mismo archivo — mismo trazo, mismos colores de marca invertidos).
  */
 export function Logo({ variant = "lockup", theme = "on-cream", className = "" }: LogoProps) {
   const textColor = theme === "on-cream" ? "text-primary" : "text-secondary";
+  const src = theme === "on-cream" ? "/logo/isotipo.png" : "/logo/isotipo-on-green.png";
 
-  const mark =
-    theme === "on-cream" ? (
-      <Image
-        src="/logo/isotipo.png"
-        alt="Isotipo Punto Hass"
-        width={64}
-        height={64}
-        className="h-8 w-8 shrink-0 rounded-full"
-        priority
-      />
-    ) : (
-      <svg
-        viewBox="0 0 48 48"
-        className="h-8 w-8 shrink-0"
-        role="img"
-        aria-label="Isotipo Punto Hass"
-      >
-        <circle cx="24" cy="24" r="24" fill="#F2ECDD" />
-        <path d="M13 31Q19 14 24 24Q29 14 35 31Z" fill="#2F4A3D" />
-      </svg>
-    );
+  const mark = (
+    <Image
+      src={src}
+      alt="Isotipo Punto Hass"
+      width={64}
+      height={64}
+      className="h-8 w-8 shrink-0 rounded-full"
+      priority
+    />
+  );
 
   if (variant === "mark") {
     return <span className={className}>{mark}</span>;

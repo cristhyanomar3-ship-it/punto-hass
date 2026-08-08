@@ -14,6 +14,11 @@ interface AnimatedStatProps {
  * Contador animado para datos técnicos ("% de merma reducida", etc).
  * Se anima una sola vez al entrar en viewport, usando spring en vez de
  * setInterval para que la animación quede fluida sin jank.
+ *
+ * Pensado para usarse sobre fondo verde Andes (bg-primary): el número usa
+ * crema (texto claro sobre fondo oscuro cumple contraste AA), la etiqueta
+ * usa verde pulpa como acento puntual, y la descripción usa crema atenuado
+ * — nunca texto carbón ni cobre pequeño sobre fondo oscuro.
  */
 export function AnimatedStat({ value, suffix = "", label, description }: AnimatedStatProps) {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -41,16 +46,19 @@ export function AnimatedStat({ value, suffix = "", label, description }: Animate
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-col gap-2"
+      className="flex flex-col gap-1.5"
     >
-      <p ref={ref} className="font-display text-5xl font-semibold text-primary md:text-6xl">
+      <p
+        ref={ref}
+        className="font-display text-5xl font-semibold leading-none text-secondary md:text-6xl"
+      >
         0{suffix}
       </p>
-      <p className="font-sans text-sm font-semibold uppercase tracking-technical text-accent">
+      <p className="font-sans text-sm font-semibold uppercase leading-snug tracking-technical text-accent-fresh">
         {label}
       </p>
       {description && (
-        <p className="font-sans text-sm text-text/70">{description}</p>
+        <p className="font-sans text-base leading-snug text-secondary/80">{description}</p>
       )}
     </motion.div>
   );

@@ -49,18 +49,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-primary py-24 text-secondary md:py-32">
+      <section className="bg-primary py-16 text-secondary md:py-20">
         <div className="mx-auto max-w-content px-6">
-          <SectionReveal className="mx-auto mb-16 max-w-2xl text-center">
-            <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent-fresh">
+          <SectionReveal className="mx-auto mb-10 max-w-2xl text-center">
+            <p className="mb-2 font-sans text-xs font-medium uppercase tracking-technical text-accent-fresh">
               Por qué importa
             </p>
-            <h2 className="font-display text-3xl font-semibold md:text-4xl">
+            <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
               El punto exacto no es un detalle — es el ahorro real.
             </h2>
           </SectionReveal>
 
-          <div className="grid gap-10 sm:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-3">
             {WHY_STATS.map((stat, i) => (
               <SectionReveal key={stat.label} delay={i * 0.1}>
                 <AnimatedStat
