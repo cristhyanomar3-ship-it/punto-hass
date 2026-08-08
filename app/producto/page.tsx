@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SectionReveal } from "@/components/SectionReveal";
 import { MaturityComparator } from "@/components/MaturityComparator";
+import { ProductGallery } from "@/components/ProductGallery";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 
@@ -73,38 +74,54 @@ export default function ProductoPage() {
       <section className="mx-auto max-w-content px-6 py-24 md:py-32">
         <SectionReveal className="mb-14 max-w-2xl">
           <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent">
-            Proceso
+            La fruta real
           </p>
           <h2 className="font-display text-3xl font-semibold text-primary md:text-4xl">
-            Selección y control de calidad
+            Calibre, piel y corte — tal como llega
           </h2>
         </SectionReveal>
+        <SectionReveal delay={0.1}>
+          <ProductGallery />
+        </SectionReveal>
+      </section>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          <SectionReveal>
-            <Card eyebrow="01 — Clasificación por punto">
-              <p className="font-sans text-sm leading-relaxed text-text/80">
-                Cada lote se clasifica por firmeza antes de despacho, no solo por calibre. El
-                punto que pediste es el punto que sale de bodega.
-              </p>
-            </Card>
+      <section className="bg-white px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-content">
+          <SectionReveal className="mb-14 max-w-2xl">
+            <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent">
+              Proceso
+            </p>
+            <h2 className="font-display text-3xl font-semibold text-primary md:text-4xl">
+              Selección y control de calidad
+            </h2>
           </SectionReveal>
-          <SectionReveal delay={0.1}>
-            <Card eyebrow="02 — Ventana de despacho">
-              <p className="font-sans text-sm leading-relaxed text-text/80">
-                Se despacha dentro de la ventana de días que corresponde a cada punto, para que
-                llegue a tu cocina lista para usarse — no a madurar en tu bodega.
-              </p>
-            </Card>
-          </SectionReveal>
-          <SectionReveal delay={0.2}>
-            <Card eyebrow="03 — Verificación de lote">
-              <p className="font-sans text-sm leading-relaxed text-text/80">
-                Muestreo de firmeza antes de cerrar cada despacho. Si un lote no cumple el punto
-                solicitado, no sale.
-              </p>
-            </Card>
-          </SectionReveal>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <SectionReveal>
+              <Card eyebrow="01 — Clasificación por punto">
+                <p className="font-sans text-sm leading-relaxed text-text/80">
+                  Cada lote se clasifica por firmeza antes de despacho, no solo por calibre. El
+                  punto que pediste es el punto que sale de bodega.
+                </p>
+              </Card>
+            </SectionReveal>
+            <SectionReveal delay={0.1}>
+              <Card eyebrow="02 — Ventana de despacho">
+                <p className="font-sans text-sm leading-relaxed text-text/80">
+                  Se despacha dentro de la ventana de días que corresponde a cada punto, para que
+                  llegue a tu cocina lista para usarse — no a madurar en tu bodega.
+                </p>
+              </Card>
+            </SectionReveal>
+            <SectionReveal delay={0.2}>
+              <Card eyebrow="03 — Verificación de lote">
+                <p className="font-sans text-sm leading-relaxed text-text/80">
+                  Muestreo de firmeza antes de cerrar cada despacho. Si un lote no cumple el punto
+                  solicitado, no sale.
+                </p>
+              </Card>
+            </SectionReveal>
+          </div>
         </div>
       </section>
 

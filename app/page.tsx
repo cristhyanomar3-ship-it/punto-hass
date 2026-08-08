@@ -1,5 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { MaturityComparator } from "@/components/MaturityComparator";
+import { ProductGallery } from "@/components/ProductGallery";
 import { SectionReveal } from "@/components/SectionReveal";
 import { AnimatedStat } from "@/components/AnimatedStat";
 import { Card } from "@/components/Card";
@@ -27,6 +28,25 @@ export default function HomePage() {
         <SectionReveal delay={0.1}>
           <MaturityComparator />
         </SectionReveal>
+      </section>
+
+      <section className="bg-white px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-content">
+          <SectionReveal className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent">
+              La fruta real
+            </p>
+            <h2 className="font-display text-3xl font-semibold text-primary md:text-4xl">
+              Así es la palta que recibe tu cocina
+            </h2>
+            <p className="mt-4 font-sans text-base text-text/70">
+              Sin fotos de stock — este es el calibre y el corte real que despachamos.
+            </p>
+          </SectionReveal>
+          <SectionReveal delay={0.1}>
+            <ProductGallery />
+          </SectionReveal>
+        </div>
       </section>
 
       <section className="bg-primary py-24 text-secondary md:py-32">

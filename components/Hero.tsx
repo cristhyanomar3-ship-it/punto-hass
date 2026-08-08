@@ -6,8 +6,9 @@ import { Button } from "./Button";
 import { BRAND_PROMISE } from "@/lib/constants";
 
 /**
- * Hero con parallax sutil: la capa de fondo (cordillera geométrica abstracta)
- * se mueve a menor velocidad que el texto al hacer scroll.
+ * Hero con parallax sutil: el video de fondo (fruta real) se mueve a menor
+ * velocidad que el texto al hacer scroll, con un velo verde Andes encima
+ * para mantener el contraste AA del texto crema/blanco sobre fondo oscuro.
  */
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,7 +21,17 @@ export function Hero() {
   return (
     <div ref={ref} className="relative h-[92vh] min-h-[560px] overflow-hidden bg-primary">
       <motion.div style={{ y: bgY }} className="absolute inset-0" aria-hidden>
-        <MountainLayer />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="h-[130%] w-full object-cover"
+          poster="/images/producto-corte.jpg"
+        >
+          <source src="/video/hero-avocado.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/50" />
       </motion.div>
 
       <motion.div
@@ -72,20 +83,5 @@ export function Hero() {
         <span className="sr-only">{BRAND_PROMISE}</span>
       </motion.div>
     </div>
-  );
-}
-
-function MountainLayer() {
-  return (
-    <svg
-      viewBox="0 0 1200 800"
-      preserveAspectRatio="xMidYMax slice"
-      className="h-[130%] w-full"
-      aria-hidden
-    >
-      <polygon points="0,800 0,520 260,300 520,480 780,220 1040,440 1200,300 1200,800" fill="#28402F" />
-      <polygon points="0,800 0,620 300,420 600,600 900,360 1200,540 1200,800" fill="#233829" />
-      <polygon points="120,800 120,700 420,600 720,720 1020,620 1200,700 1200,800" fill="#1D2F23" />
-    </svg>
   );
 }
