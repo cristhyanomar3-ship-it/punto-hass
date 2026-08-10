@@ -15,7 +15,7 @@ const SPECS = [
   { label: "Calibre", value: "16–18 y 20–22" },
   { label: "Origen", value: "Valles de Chile central, cordillera de los Andes" },
   { label: "Estándar", value: "Selección para uso de cocina, no solo exportación" },
-  { label: "Zonas de despacho", value: "[COMPLETAR: zonas de cobertura reales]" },
+  { label: "Zonas de despacho", value: "Región Metropolitana de Santiago, Chile — 2 a 3 días hábiles" },
 ];
 
 export default function ProductoPage() {

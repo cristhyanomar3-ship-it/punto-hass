@@ -92,7 +92,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "¿Cuál es el pedido mínimo?",
     answer:
-      "[COMPLETAR: definir pedido mínimo real, ej. cajas de 10 kg]. Trabajamos con volúmenes pensados para cocina, no para retail — el mínimo se ajusta según zona de despacho.",
+      "10 kg por pedido. Trabajamos con volúmenes pensados para cocina, no para retail — a partir de ese mínimo armamos la mezcla de puntos de maduración que necesites.",
   },
   {
     question:
@@ -103,12 +103,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "¿Qué pasa si un lote llega en mal estado?",
     answer:
-      "[DEFINIR SLA REAL: política de reposición/crédito]. La regla base es simple: si el punto de maduración no corresponde a lo pedido, se reemplaza o se acredita — no es problema tuyo administrar un error nuestro.",
+      "Se reemplaza o se acredita, sin costo para ti. Si al recibir el pedido el punto de maduración no corresponde a lo solicitado o la fruta llega en mal estado, avísanos dentro de las 24 horas siguientes a la entrega (con foto del lote) y coordinamos reposición en el despacho más próximo o abonamos el valor a tu próxima compra — tú eliges. No es tu responsabilidad administrar un error nuestro.",
   },
   {
     question: "¿Cuáles son las zonas y tiempos de despacho?",
     answer:
-      "[COMPLETAR: zonas de cobertura y plazos de entrega reales por zona].",
+      "Cobertura en toda la Región Metropolitana de Santiago, Chile. Tiempo de entrega estándar: 2 a 3 días hábiles desde la confirmación del pedido.",
   },
   {
     question:
@@ -140,13 +140,23 @@ export const FREQUENCY_OPTIONS = [
 ] as const;
 
 export const CONTACT_INFO = {
-  phone: "[COMPLETAR]",
-  whatsapp: "[COMPLETAR]",
-  email: "[COMPLETAR]",
-  address: "[COMPLETAR]",
+  phone: "+56 9 9469 7253",
+  phoneHref: "+56994697253",
+  whatsapp: "+56 9 9469 7253",
+  whatsappHref: "56994697253", // formato E.164 sin "+" para links wa.me
+  email: "soportefmarin23@gmail.com",
+  address: "Despacho en toda la Región Metropolitana de Santiago, Chile",
+  coverageArea: "Región Metropolitana de Santiago, Chile",
+  deliveryTime: "2 a 3 días hábiles",
 };
 
 export const SOCIAL_LINKS = [
-  { label: "Instagram", href: "#" }, // TODO: reemplazar con dato real
-  { label: "LinkedIn", href: "#" }, // TODO: reemplazar con dato real
+  { label: "Instagram", href: "https://www.instagram.com/puntohass?utm_source=qr" },
+  { label: "Facebook", href: "#" }, // TODO: reemplazar cuando esté disponible la página de Facebook
 ];
+
+export const LEGAL_LINKS = [
+  { href: "/legal/privacidad", label: "Política de Privacidad" },
+  { href: "/legal/politica-de-envios", label: "Política de Envíos" },
+  { href: "/legal/terminos", label: "Términos y Condiciones" },
+] as const;

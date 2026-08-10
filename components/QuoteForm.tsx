@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FocusEvent, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BUSINESS_TYPES, FREQUENCY_OPTIONS } from "@/lib/constants";
+import { BUSINESS_TYPES, FREQUENCY_OPTIONS, CONTACT_INFO } from "@/lib/constants";
 
 interface FormState {
   name: string;
@@ -41,11 +41,33 @@ function validateField(field: keyof FormState, value: string): string | undefine
   }
 }
 
+/** Arma el mensaje de WhatsApp a partir de los datos del formulario. */
+function buildWhatsAppMessage(values: FormState): string {
+  const businessTypeLabel =
+    BUSINESS_TYPES.find((t) => t.value === values.businessType)?.label ?? values.businessType;
+  const frequencyLabel =
+    FREQUENCY_OPTIONS.find((f) => f.value === values.frequency)?.label ?? values.frequency;
+
+  return [
+    "Hola Punto Hass, quiero solicitar una cotización:",
+    "",
+    `Nombre: ${values.name}`,
+    `Negocio: ${values.business}`,
+    `Tipo de negocio: ${businessTypeLabel}`,
+    `Volumen estimado semanal: ${values.weeklyVolume}`,
+    `Frecuencia de pedido: ${frequencyLabel}`,
+    values.message ? `Mensaje: ${values.message}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 export function QuoteForm() {
   const [values, setValues] = useState<FormState>(INITIAL_STATE);
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormState, boolean>>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [whatsappLink, setWhatsappLink] = useState<string>("");
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -84,19 +106,33 @@ export function QuoteForm() {
     if (Object.keys(nextErrors).length > 0) return;
 
     setStatus("submitting");
+
+    // Abrimos WhatsApp de inmediato, dentro del mismo gesto de clic del
+    // usuario — si esperáramos a que termine el fetch antes de abrir la
+    // ventana, Safari/iOS suele bloquearla por no considerarla ya parte
+    // de una interacción directa.
+    const waLink = `https://wa.me/${CONTACT_INFO.whatsappHref}?text=${encodeURIComponent(
+      buildWhatsAppMessage(values)
+    )}`;
+    setWhatsappLink(waLink);
+    window.open(waLink, "_blank", "noopener,noreferrer");
+
+    // Registro adicional en el servidor (log por ahora — ver TODO en la API
+    // route para conectar envío por email más adelante). No bloquea el
+    // flujo de WhatsApp si falla.
     try {
-      const res = await fetch("/api/contacto", {
+      await fetch("/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-      if (!res.ok) throw new Error("request failed");
-      setStatus("success");
-      setValues(INITIAL_STATE);
-      setTouched({});
     } catch {
-      setStatus("error");
+      // El envío por WhatsApp ya se abrió; un fallo aquí no debe bloquear al usuario.
     }
+
+    setStatus("success");
+    setValues(INITIAL_STATE);
+    setTouched({});
   };
 
   const inputClasses = (field: keyof FormState) =>
@@ -113,18 +149,30 @@ export function QuoteForm() {
         className="rounded-2xl border border-accent-fresh/30 bg-white p-8 text-center"
       >
         <p className="font-display text-2xl font-semibold text-primary">
-          Recibimos tu solicitud
+          Te abrimos WhatsApp para confirmar el envío
         </p>
         <p className="mt-3 font-sans text-sm text-text/70">
-          Te contactaremos a la brevedad para coordinar tu cotización y, si quieres, un pedido
-          de prueba.
+          Si no se abrió una nueva pestaña automáticamente (algunos navegadores la bloquean),
+          usa el botón de abajo para enviar tu solicitud directo por WhatsApp.
         </p>
-        <button
-          onClick={() => setStatus("idle")}
-          className="mt-6 font-sans text-sm font-semibold text-accent underline underline-offset-4"
-        >
-          Enviar otra solicitud
-        </button>
+        {whatsappLink && (
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-sans text-sm font-semibold text-white transition-all duration-200 ease-out hover:bg-[#a3692f]"
+          >
+            Abrir WhatsApp
+          </a>
+        )}
+        <div>
+          <button
+            onClick={() => setStatus("idle")}
+            className="mt-6 font-sans text-sm font-semibold text-accent underline underline-offset-4"
+          >
+            Enviar otra solicitud
+          </button>
+        </div>
       </motion.div>
     );
   }

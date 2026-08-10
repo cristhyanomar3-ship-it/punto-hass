@@ -37,8 +37,26 @@ export default function ContactoPage() {
                 Contacto directo
               </p>
               <ul className="flex flex-col gap-2 font-sans text-base text-text/80">
-                <li>Teléfono / WhatsApp: {CONTACT_INFO.phone}</li>
-                <li>Email: {CONTACT_INFO.email}</li>
+                <li>
+                  Teléfono / WhatsApp:{" "}
+                  <a
+                    href={`https://wa.me/${CONTACT_INFO.whatsappHref}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-accent hover:underline"
+                  >
+                    {CONTACT_INFO.phone}
+                  </a>
+                </li>
+                <li>
+                  Email:{" "}
+                  <a
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    className="font-medium text-accent hover:underline"
+                  >
+                    {CONTACT_INFO.email}
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -46,11 +64,17 @@ export default function ContactoPage() {
               <p className="mb-3 font-sans text-xs font-medium uppercase tracking-technical text-accent">
                 Zona de cobertura
               </p>
-              <div className="flex aspect-video items-center justify-center rounded-2xl border border-dashed border-primary/25 bg-secondary font-sans text-sm text-primary/50">
-                [MAPA DE COBERTURA PENDIENTE]
+              <div className="aspect-video overflow-hidden rounded-2xl border border-primary/10">
+                <iframe
+                  src="https://www.google.com/maps?q=Regi%C3%B3n+Metropolitana+de+Santiago,+Chile&output=embed"
+                  title="Mapa de cobertura — Región Metropolitana de Santiago"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="h-full w-full border-0"
+                />
               </div>
               <p className="mt-3 font-sans text-sm text-text/60">
-                {CONTACT_INFO.address}
+                {CONTACT_INFO.address} — despacho en {CONTACT_INFO.deliveryTime}.
               </p>
             </div>
 

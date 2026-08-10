@@ -80,15 +80,17 @@ export default function NosotrosPage() {
             <SectionReveal delay={0.1}>
               <Card eyebrow="Plazos de entrega">
                 <p className="font-sans text-sm leading-relaxed text-text/80">
-                  [DEFINIR SLA REAL: plazo de entrega comprometido por zona].
+                  2 a 3 días hábiles desde la confirmación del pedido, en toda la Región
+                  Metropolitana de Santiago.
                 </p>
               </Card>
             </SectionReveal>
             <SectionReveal delay={0.2}>
               <Card eyebrow="Respuesta ante incidencias">
                 <p className="font-sans text-sm leading-relaxed text-text/80">
-                  [DEFINIR SLA REAL: política de reposición o crédito si un lote llega en mal
-                  estado].
+                  Si un lote llega en mal estado o en un punto distinto al solicitado, avísanos
+                  dentro de 24 horas con una foto y lo reponemos en el siguiente despacho o lo
+                  abonamos a tu próxima compra.
                 </p>
               </Card>
             </SectionReveal>
