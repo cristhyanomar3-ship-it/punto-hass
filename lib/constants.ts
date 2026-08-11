@@ -152,7 +152,7 @@ export const CONTACT_INFO = {
 
 export const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/puntohass?utm_source=qr" },
-  { label: "Facebook", href: "#" }, // TODO: reemplazar cuando esté disponible la página de Facebook
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592906161835" },
 ];
 
 export const LEGAL_LINKS = [
