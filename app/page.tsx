@@ -4,6 +4,7 @@ import { ProductGallery } from "@/components/ProductGallery";
 import { SectionReveal } from "@/components/SectionReveal";
 import { AnimatedStat } from "@/components/AnimatedStat";
 import { Button } from "@/components/Button";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { WHY_STATS } from "@/lib/constants";
 
 export default function HomePage() {
@@ -83,10 +84,11 @@ export default function HomePage() {
             Evalúa consistencia en 2-3 entregas antes de comprometer volumen. Así decide un
             comprador serio.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href="/contacto" variant="primary">
               Cotizar ahora
             </Button>
+            <WhatsAppButton variant="outline-light" />
           </div>
         </SectionReveal>
       </section>

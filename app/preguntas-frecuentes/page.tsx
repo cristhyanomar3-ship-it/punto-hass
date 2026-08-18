@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SectionReveal } from "@/components/SectionReveal";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Button } from "@/components/Button";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { FAQ_ITEMS } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -38,10 +39,11 @@ export default function FaqPage() {
           <p className="mx-auto mt-4 max-w-xl font-sans text-base text-secondary/75">
             Escríbenos directamente y te respondemos con datos concretos, no con evasivas.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href="/contacto" variant="primary">
               Contactar
             </Button>
+            <WhatsAppButton variant="outline-light" />
           </div>
         </SectionReveal>
       </section>

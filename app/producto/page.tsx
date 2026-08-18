@@ -4,6 +4,7 @@ import { MaturityComparator } from "@/components/MaturityComparator";
 import { ProductGallery } from "@/components/ProductGallery";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Nuestra palta — Puntos de maduración",
@@ -130,10 +131,11 @@ export default function ProductoPage() {
           <h2 className="font-display text-3xl font-semibold md:text-4xl">
             ¿Listo para pedir el punto exacto que necesitas?
           </h2>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href="/contacto" variant="primary">
               Cotizar ahora
             </Button>
+            <WhatsAppButton variant="outline-light" />
           </div>
         </SectionReveal>
       </section>

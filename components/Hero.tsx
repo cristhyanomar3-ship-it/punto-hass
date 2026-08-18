@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./Button";
+import { WhatsAppButton } from "./WhatsAppButton";
 import { BRAND_PROMISE } from "@/lib/constants";
 
 /**
@@ -90,6 +91,7 @@ export function Hero() {
           <Button href="/contacto" variant="primary">
             Cotizar ahora
           </Button>
+          <WhatsAppButton variant="outline-light" />
           <Button
             href="/producto"
             variant="outline"

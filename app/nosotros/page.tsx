@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SectionReveal } from "@/components/SectionReveal";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Sobre Punto Hass",
@@ -103,10 +104,11 @@ export default function NosotrosPage() {
           <h2 className="font-display text-3xl font-semibold md:text-4xl">
             Conversemos sobre el punto que necesita tu cocina
           </h2>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href="/contacto" variant="primary">
               Cotizar ahora
             </Button>
+            <WhatsAppButton variant="outline-light" />
           </div>
         </SectionReveal>
       </section>

@@ -140,10 +140,10 @@ export const FREQUENCY_OPTIONS = [
 ] as const;
 
 export const CONTACT_INFO = {
-  phone: "+56 9 9469 7253",
-  phoneHref: "+56994697253",
-  whatsapp: "+56 9 9469 7253",
-  whatsappHref: "56994697253", // formato E.164 sin "+" para links wa.me
+  phone: "+56 9 4149 9749",
+  phoneHref: "+56941499749",
+  whatsapp: "+56 9 4149 9749",
+  whatsappHref: "56941499749", // formato E.164 sin "+" para links wa.me
   email: "soportefmarin23@gmail.com",
   address: "Despacho en toda la Región Metropolitana de Santiago, Chile",
   coverageArea: "Región Metropolitana de Santiago, Chile",
