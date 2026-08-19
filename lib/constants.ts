@@ -1,4 +1,4 @@
-export const SITE_URL = "https://puntohass.cl"; // TODO: reemplazar con dominio real
+export const SITE_URL = "https://puntohass.com"; 
 
 export const SITE_NAME = "Punto Hass";
 
