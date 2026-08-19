@@ -144,7 +144,7 @@ export const CONTACT_INFO = {
   phoneHref: "+56941499749",
   whatsapp: "+56 9 4149 9749",
   whatsappHref: "56941499749", // formato E.164 sin "+" para links wa.me
-  email: "soportefmarin23@gmail.com",
+  email: "puntohass@gmail.com",
   address: "Despacho en toda la Región Metropolitana de Santiago, Chile",
   coverageArea: "Región Metropolitana de Santiago, Chile",
   deliveryTime: "2 a 3 días hábiles",
